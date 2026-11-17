@@ -1,6 +1,17 @@
 from __future__ import annotations
 
+import enum
+
 import numpy as np
+
+
+class STFunctionNames(enum.StrEnum):
+    S_FUNCTION_1 = r"\alpha"
+    T_FUNCTION_1 = r"1 - \beta"
+    S_FUNCTION_2 = r"\alpha \exp(\alpha - 1)"
+    T_FUNCTION_2 = r"1 - \beta \exp(\beta - 1)"
+    S_FUNCTION_3 = r"\sin\left(\frac{\pi \alpha}{2}\right)"
+    T_FUNCTION_3 = r"\cos\left(\frac{\pi \beta}{2}\right)"
 
 
 class STFunction:
@@ -64,3 +75,26 @@ class STFunction:
         callable: The third T-function.
         """
         return lambda beta: np.cos(np.pi * beta / 2)
+
+    @staticmethod
+    def all_functions() -> list[tuple[tuple[str, callable], tuple[str, callable]]]:
+        """
+        Return a list of all S and T functions.
+
+        Returns:
+        list[tuple[tuple[str, callable], tuple[str, callable]]]: A list of tuples mapping function names to their corresponding callables.
+        """
+        return [
+            (
+                (STFunctionNames.S_FUNCTION_1, STFunction.s_function_1()),
+                (STFunctionNames.T_FUNCTION_1, STFunction.t_function_1()),
+            ),
+            (
+                (STFunctionNames.S_FUNCTION_2, STFunction.s_function_2()),
+                (STFunctionNames.T_FUNCTION_2, STFunction.t_function_2()),
+            ),
+            (
+                (STFunctionNames.S_FUNCTION_3, STFunction.s_function_3()),
+                (STFunctionNames.T_FUNCTION_3, STFunction.t_function_3()),
+            ),
+        ]

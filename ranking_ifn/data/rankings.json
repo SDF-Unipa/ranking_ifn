@@ -1,175 +1,176 @@
 {
-    "examples": {
-        "1": {
-            "Popa2023": [
-                "F_{1} < F_{2}"
-            ],
-            "bharati2017": [
-                "F_{1} < F_{2}"
-            ],
-            "mohan2020": [
-                "F_{1} < F_{2}"
-            ],
-            "rezvani2013": [
-                "F_{1} < F_{2}"
-            ],
-            "roseline2013": [
-                "F_{1} < F_{2}"
-            ],
-            "ye2011": [
-                "F_{1} < F_{2}"
-            ]
-        },
-        "2": {
-            "Popa2023": [
-                "F_{1} \\approx F_{2}"
-            ],
-            "bharati2017": [
-                "F_{1} > F_{2}"
-            ],
-            "mohan2020": [
-                "F_{1} \\approx F_{2}"
-            ],
-            "rezvani2013": [
-                "F_{1} > F_{2}"
-            ],
-            "roseline2013": [
-                "F_{1} > F_{2}"
-            ],
-            "ye2011": [
-                "F_{1} \\approx F_{2}"
-            ]
-        },
-        "3": {
-            "Popa2023": [
-                "F_{1} < F_{2}"
-            ],
-            "bharati2017": [
-                "F_{1} < F_{2}"
-            ],
-            "mohan2020": [
-                "F_{1} < F_{2}"
-            ],
-            "rezvani2013": [
-                "F_{1} < F_{2}"
-            ],
-            "roseline2013": [
-                "F_{1} < F_{2}"
-            ],
-            "ye2011": [
-                "F_{1} < F_{2}"
-            ]
-        },
-        "4": {
-            "Popa2023": [
-                "F_{1} > F_{2}"
-            ],
-            "bharati2017": [
-                "F_{1} > F_{2}"
-            ],
-            "mohan2020": [
-                "F_{1} > F_{2}"
-            ],
-            "rezvani2013": [
-                "F_{1} > F_{2}"
-            ],
-            "roseline2013": [
-                "F_{1} > F_{2}"
-            ],
-            "ye2011": [
-                "F_{1} > F_{2}"
-            ]
-        },
-        "5": {
-            "Popa2023": [
-                "F_{1} < F_{2}"
-            ],
-            "bharati2017": [
-                "F_{1} < F_{2}"
-            ],
-            "mohan2020": [
-                "F_{1} < F_{2}"
-            ],
-            "rezvani2013": [
-                "F_{1} < F_{2}"
-            ],
-            "roseline2013": [
-                "F_{1} < F_{2}"
-            ],
-            "ye2011": [
-                "F_{1} < F_{2}"
-            ]
-        },
-        "6": {
-            "Popa2023": [
-                "F_{1} < F_{2}",
-                "F_{1} > F_{2}"
-            ],
-            "bharati2017": [
-                "F_{1} > F_{2}"
-            ],
-            "mohan2020": [
-                "F_{1} < F_{2}"
-            ],
-            "rezvani2013": [
-                "F_{1} < F_{2}"
-            ],
-            "roseline2013": [
-                "F_{1} < F_{2}"
-            ],
-            "ye2011": [
-                "F_{1} < F_{2}"
-            ]
-        },
-        "7": {
-            "Popa2023": [
-                "F_{3} > F_{2} > F_{1}",
-                "F_{3} > F_{1} > F_{2}",
-                "F_{1} > F_{3} > F_{2}"
-            ],
-            "bharati2017": [
-                "F_{1} > F_{3} > F_{2}"
-            ],
-            "mohan2020": [
-                "F_{3} > F_{2} > F_{1}"
-            ],
-            "rezvani2013": [
-                "F_{3} > F_{2} > F_{1}"
-            ],
-            "roseline2013": [
-                "F_{3} > F_{2} > F_{1}"
-            ],
-            "ye2011": [
-                "F_{3} > F_{1} > F_{2}"
-            ]
-        }
+  "examples": {
+    "1": {
+      "Popa2023": [
+        "F_{1} < F_{2}"
+      ],
+      "bharati2017": [
+        "F_{1} < F_{2}"
+      ],
+      "mohan2020": [
+        "F_{1} < F_{2}"
+      ],
+      "rezvani2013": [
+        "F_{1} < F_{2}"
+      ],
+      "roseline2013": [
+        "F_{1} < F_{2}"
+      ],
+      "ye2011": [
+        "F_{1} < F_{2}"
+      ]
     },
-    "methods": {
-        "Popa2023": {
-            "doi": "10.15837/ijccc.2023.2.5118",
-            "name": "Popa's method"
-        },
-        "bharati2017": {
-            "doi": null,
-            "name": "Bharati's method",
-            "url": "https://www.ripublication.com/gjpam17/gjpamv13n9_16.pdf"
-        },
-        "mohan2020": {
-            "doi": "10.22105/jfea.2020.247301.1003",
-            "name": "Mohan et al.'s method"
-        },
-        "rezvani2013": {
-            "doi": null,
-            "name": "Rezvani's method"
-        },
-        "roseline2013": {
-            "doi": "10.15373/2249555X/JUNE2013/183",
-            "name": "Roseline et al.'s method"
-        },
-        "ye2011": {
-            "doi": "10.1016/j.eswa.2011.03.059",
-            "name": "Ye's method"
-        }
+    "2": {
+      "Popa2023": [
+        "F_{1} \\approx F_{2}"
+      ],
+      "bharati2017": [
+        "F_{1} > F_{2}"
+      ],
+      "mohan2020": [
+        "F_{1} \\approx F_{2}"
+      ],
+      "rezvani2013": [
+        "F_{1} > F_{2}"
+      ],
+      "roseline2013": [
+        "F_{1} > F_{2}"
+      ],
+      "ye2011": [
+        "F_{1} \\approx F_{2}"
+      ]
     },
-    "source": "Computed by ranking_ifn/comparison_methods.py"
+    "3": {
+      "Popa2023": [
+        "F_{1} < F_{2}"
+      ],
+      "bharati2017": [
+        "F_{1} < F_{2}"
+      ],
+      "mohan2020": [
+        "F_{1} < F_{2}"
+      ],
+      "rezvani2013": [
+        "F_{1} < F_{2}"
+      ],
+      "roseline2013": [
+        "F_{1} < F_{2}"
+      ],
+      "ye2011": [
+        "F_{1} < F_{2}"
+      ]
+    },
+    "4": {
+      "Popa2023": [
+        "F_{1} > F_{2}"
+      ],
+      "bharati2017": [
+        "F_{1} > F_{2}"
+      ],
+      "mohan2020": [
+        "F_{1} > F_{2}"
+      ],
+      "rezvani2013": [
+        "F_{1} > F_{2}"
+      ],
+      "roseline2013": [
+        "F_{1} > F_{2}"
+      ],
+      "ye2011": [
+        "F_{1} > F_{2}"
+      ]
+    },
+    "5": {
+      "Popa2023": [
+        "F_{1} < F_{2}"
+      ],
+      "bharati2017": [
+        "F_{1} < F_{2}"
+      ],
+      "mohan2020": [
+        "F_{1} < F_{2}"
+      ],
+      "rezvani2013": [
+        "F_{1} < F_{2}"
+      ],
+      "roseline2013": [
+        "F_{1} < F_{2}"
+      ],
+      "ye2011": [
+        "F_{1} < F_{2}"
+      ]
+    },
+    "6": {
+      "Popa2023": [
+        "F_{1} < F_{2}",
+        "F_{1} > F_{2}"
+      ],
+      "bharati2017": [
+        "F_{1} > F_{2}"
+      ],
+      "mohan2020": [
+        "F_{1} < F_{2}"
+      ],
+      "rezvani2013": [
+        "F_{1} < F_{2}"
+      ],
+      "roseline2013": [
+        "F_{1} < F_{2}"
+      ],
+      "ye2011": [
+        "F_{1} < F_{2}"
+      ]
+    },
+    "7": {
+      "Popa2023": [
+        "F_{3} > F_{2} > F_{1}",
+        "F_{3} > F_{1} > F_{2}",
+        "F_{1} > F_{3} > F_{2}"
+      ],
+      "bharati2017": [
+        "F_{1} > F_{3} > F_{2}"
+      ],
+      "mohan2020": [
+        "F_{3} > F_{2} > F_{1}"
+      ],
+      "rezvani2013": [
+        "F_{3} > F_{2} > F_{1}"
+      ],
+      "roseline2013": [
+        "F_{3} > F_{2} > F_{1}"
+      ],
+      "ye2011": [
+        "F_{3} > F_{1} > F_{2}"
+      ]
+    }
+  },
+  "methods": {
+    "Popa2023": {
+      "doi": "10.15837/ijccc.2023.2.5118",
+      "name": "Popa's method"
+    },
+    "bharati2017": {
+      "doi": null,
+      "name": "Bharati's method",
+      "url": "https://www.ripublication.com/gjpam17/gjpamv13n9_16.pdf"
+    },
+    "mohan2020": {
+      "doi": "10.22105/jfea.2020.247301.1003",
+      "name": "Mohan et al.'s method"
+    },
+    "rezvani2013": {
+      "doi": null,
+      "name": "Rezvani's method",
+      "url": "http://www.afmi.or.kr/papers/2013/Vol-05_No-03/PDF-AFMI-5-3(451-619)/AFMI-5-3(515-523)-H-120725.pdf"
+    },
+    "roseline2013": {
+      "doi": "10.15373/2249555X/JUNE2013/183",
+      "name": "Roseline et al.'s method"
+    },
+    "ye2011": {
+      "doi": "10.1016/j.eswa.2011.03.059",
+      "name": "Ye's method"
+    }
+  },
+  "source": "Computed by ranking_ifn/comparison_methods.py"
 }

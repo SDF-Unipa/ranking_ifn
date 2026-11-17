@@ -5,8 +5,10 @@ import math
 from pathlib import Path
 
 import numpy as np
+from scipy.special import expit
 
 from ranking_ifn.ifn import IdealIntuitionisticFuzzyNumber, IntuitionisticFuzzyNumber
+from ranking_ifn.st_function import STFunctionNames
 
 # Set up logging configuration
 logging.basicConfig(
@@ -492,6 +494,26 @@ class DistanceCalculator:
         return result
 
     @staticmethod
+    def sigma_function(a: np.ndarray, b: np.ndarray) -> np.ndarray:
+        """
+        Calculate the sigma function for two numpy arrays.
+        The sigma function is defined as the softmax of the element-wise differences between the two arrays.
+
+        In particular, this function computes:
+        r[i] = exp(a[i]) / (exp(a[i]) + exp(b[i])) = 1 / (1 + exp(b[i] - a[i])) = \\sigma(a[i] - b[i]),
+        where \\sigma(x) = 1 / (1 + exp(-x)) is the sigmoid function.
+
+        Args:
+        a (np.ndarray): The first array.
+        b (np.ndarray): The second array.
+
+        Returns:
+        np.ndarray: The result of the sigma function.
+        """
+        # Compute the element-wise sigma function using the sigmoid of the differences between a and b.
+        return expit(a - b)
+
+    @staticmethod
     def ranking_index(
         s_function: callable,
         t_function: callable,
@@ -499,6 +521,8 @@ class DistanceCalculator:
         n: int = 100,
         m: int = 100,
         file_path: Path = DATA_DIR / "ranking_index.json",
+        s_function_name: str = STFunctionNames.S_FUNCTION_1,
+        t_function_name: str = STFunctionNames.T_FUNCTION_1,
     ) -> np.ndarray:
         """
         Calculate the ranking index for a list of intuitionistic fuzzy numbers.
@@ -508,6 +532,8 @@ class DistanceCalculator:
         n (int): The number of points for numerical integration (default is 100).
         m (int): The number of points for numerical integration (default is 100).
         file_path (Path): The path to the file where the ranking index will be saved (default is "ranking_index.json").
+        s_function_name (str): The name of the S-function (default is STFunctionNames.S_FUNCTION_1).
+        t_function_name (str): The name of the T-function (default is STFunctionNames.T_FUNCTION_1).
 
         Returns:
         np.ndarray: An array of ranking index values for each intuitionistic fuzzy number.
@@ -601,23 +627,10 @@ class DistanceCalculator:
             non_membership_distances_ast_nu - non_membership_distances_nu_ast
         )
 
-        # Calculate sigma factors based on S-index plus and S-index minus
-        # sigma_i = 0.5 if abs(delta_mu) == abs(delta_nu)
-        # sigma_i = abs(delta_mu / delta_nu) if abs(delta_mu) < abs(delta_nu)
-        # sigma_i = 1 - abs(delta_nu / delta_mu) if abs(delta_nu) < abs(delta_mu)
+        # Compute the sigma factors using the sigmoid function of the differences between delta_mu and delta_nu.
+        # sigma_i = sigmoid(delta_mu_i - delta_nu_i) for each i = 1 / (1 + exp(-(delta_mu_i - delta_nu_i)))
         sigma_factors: np.ndarray = np.array(
-            [
-                (
-                    0.5
-                    if np.abs(delta_mu_i) == np.abs(delta_nu_i)
-                    else (
-                        np.abs(delta_mu_i / delta_nu_i)
-                        if np.abs(delta_mu_i) < np.abs(delta_nu_i)
-                        else 1 - np.abs(delta_nu_i / delta_mu_i)
-                    )
-                )
-                for delta_mu_i, delta_nu_i in zip(delta_mu, delta_nu)
-            ]
+            DistanceCalculator.sigma_function(delta_mu, delta_nu)
         )
 
         # R_i = 1/2 * (
@@ -646,7 +659,7 @@ class DistanceCalculator:
         ranking_index: np.ndarray = (
             first_term + sigma_factors * second_term + (1 - sigma_factors) * third_term
         ) / 2.0
-        
+
         logger.debug(f"Ranking index: {ranking_index}")
 
         # Save the results to a JSON file for further analysis
@@ -670,6 +683,8 @@ class DistanceCalculator:
                 r"$P_2$": second_term.tolist(),
                 r"$P_3$": third_term.tolist(),
                 "$R$": ranking_index.tolist(),
+                r"$s$-function": s_function_name,
+                r"$t$-function": t_function_name,
             },
         )
         return ranking_index
@@ -682,6 +697,8 @@ class DistanceCalculator:
         n: int = 100,
         m: int = 100,
         file_path: Path = DATA_DIR / "ranking_index.json",
+        s_function_name: str = STFunctionNames.S_FUNCTION_1,
+        t_function_name: str = STFunctionNames.T_FUNCTION_1,
     ) -> tuple[np.ndarray, str]:
         """
         Calculate the ranking index for a list of intuitionistic fuzzy numbers.
@@ -693,13 +710,22 @@ class DistanceCalculator:
         n (int): The number of points for numerical integration (default is 100).
         m (int): The number of points for numerical integration (default is 100).
         file_path (Path): The path to the file where the ranking index will be saved (default is "ranking_index.json").
+        s_function_name (str): The name of the S-function used (default is STFunctionNames.S_FUNCTION_1).
+        t_function_name (str): The name of the T-function used (default is STFunctionNames.T_FUNCTION_1).
 
         Returns:
         tuple[np.ndarray, str]: A tuple containing the array of ranking index values and a string representation of their ranks.
         """
         logger.debug("Calculating ranking for intuitionistic fuzzy numbers.")
         ranks: np.ndarray = DistanceCalculator.ranking_index(
-            s_function, t_function, fuzzy, n=n, m=m, file_path=file_path
+            s_function,
+            t_function,
+            fuzzy,
+            n=n,
+            m=m,
+            file_path=file_path,
+            s_function_name=s_function_name,
+            t_function_name=t_function_name,
         )
         indices: np.ndarray = np.argsort(ranks)[::-1]
         return (

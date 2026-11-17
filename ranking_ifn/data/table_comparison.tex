@@ -3,23 +3,23 @@
 	\label{tab:comparison}
 	\centering
 	\resizebox{\textwidth}{!}{
-	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+	\begin{tabular}{cccccccc}
 		\toprule
-		\textbf{Example} & \textbf{Popa's method} \cite{Popa2023} & \textbf{Bharati's method} \cite{bharati2017} & \textbf{Mohan et al.'s method} \cite{mohan2020} & \textbf{Rezvani's method} \cite{rezvani2013} & \textbf{Roseline et al.'s method} \cite{roseline2013} & \textbf{Ye's method} \cite{ye2011} & \textbf{Proposed method} \\
-		\hline \hline
-		1 & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ \\
-		\hline
-		2 & $F_{1} \approx F_{2}$ & $F_{1} > F_{2}$ & $F_{1} \approx F_{2}$ & $F_{1} > F_{2}$ & $F_{1} > F_{2}$ & $F_{1} \approx F_{2}$ & $F_{1} > F_{2}$ \\
-		\hline
-		3 & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ \\
-		\hline
-		4 & $F_{1} > F_{2}$ & $F_{1} > F_{2}$ & $F_{1} > F_{2}$ & $F_{1} > F_{2}$ & $F_{1} > F_{2}$ & $F_{1} > F_{2}$ & $F_{1} > F_{2}$ \\
-		\hline
-		5 & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ \\
-		\hline
-		6 & \begin{tabular}{@{}c@{}}$F_{1} < F_{2}$ \\ $F_{1} > F_{2}$\end{tabular} & $F_{1} > F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ \\
-		\hline
-		7 & \begin{tabular}{@{}c@{}}$F_{3} > F_{2} > F_{1}$ \\ $F_{3} > F_{1} > F_{2}$ \\ $F_{1} > F_{3} > F_{2}$\end{tabular} & $F_{1} > F_{3} > F_{2}$ & $F_{3} > F_{2} > F_{1}$ & $F_{3} > F_{2} > F_{1}$ & $F_{3} > F_{2} > F_{1}$ & $F_{3} > F_{1} > F_{2}$ & $F_{3} > F_{2} > F_{1}$ \\
-		\hline \hline
+		\textbf{Example} & \textbf{Popa's method} \cite{Popa2023} & \textbf{Bharati's method} \cite{bharati2017} & \textbf{Mohan et al.'s method} \cite{mohan2020} & \textbf{Rezvani's method} \cite{rezvani2013} & \textbf{Roseline et al.'s method} \cite{roseline2013} & \textbf{Ye's method} \cite{ye2011} & \begin{tabular}{@{}ccc@{}}\multicolumn{3}{c}{\textbf{Proposed method}} \\ \textbf{$s$-function} & \textbf{$t$-function} & \textbf{Ranking}\end{tabular} \\
+		\midrule
+		1 & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & \begin{tabular}{@{}ccc@{}}$\alpha$ & $1 - \beta$ & $F_{1} < F_{2}$ \\ $\alpha \exp(\alpha - 1)$ & $1 - \beta \exp(\beta - 1)$ & $F_{1} < F_{2}$ \\ $\sin\left(\frac{\pi \alpha}{2}\right)$ & $\cos\left(\frac{\pi \beta}{2}\right)$ & $F_{1} < F_{2}$\end{tabular} \\
+		\midrule
+		2 & $F_{1} \approx F_{2}$ & $F_{1} > F_{2}$ & $F_{1} \approx F_{2}$ & $F_{1} > F_{2}$ & $F_{1} > F_{2}$ & $F_{1} \approx F_{2}$ & \begin{tabular}{@{}ccc@{}}$\alpha$ & $1 - \beta$ & $F_{1} > F_{2}$ \\ $\alpha \exp(\alpha - 1)$ & $1 - \beta \exp(\beta - 1)$ & $F_{1} > F_{2}$ \\ $\sin\left(\frac{\pi \alpha}{2}\right)$ & $\cos\left(\frac{\pi \beta}{2}\right)$ & $F_{1} > F_{2}$\end{tabular} \\
+		\midrule
+		3 & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & \begin{tabular}{@{}ccc@{}}$\alpha$ & $1 - \beta$ & $F_{1} < F_{2}$ \\ $\alpha \exp(\alpha - 1)$ & $1 - \beta \exp(\beta - 1)$ & $F_{1} < F_{2}$ \\ $\sin\left(\frac{\pi \alpha}{2}\right)$ & $\cos\left(\frac{\pi \beta}{2}\right)$ & $F_{1} < F_{2}$\end{tabular} \\
+		\midrule
+		4 & $F_{1} > F_{2}$ & $F_{1} > F_{2}$ & $F_{1} > F_{2}$ & $F_{1} > F_{2}$ & $F_{1} > F_{2}$ & $F_{1} > F_{2}$ & \begin{tabular}{@{}ccc@{}}$\alpha$ & $1 - \beta$ & $F_{1} > F_{2}$ \\ $\alpha \exp(\alpha - 1)$ & $1 - \beta \exp(\beta - 1)$ & $F_{1} > F_{2}$ \\ $\sin\left(\frac{\pi \alpha}{2}\right)$ & $\cos\left(\frac{\pi \beta}{2}\right)$ & $F_{1} > F_{2}$\end{tabular} \\
+		\midrule
+		5 & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & \begin{tabular}{@{}ccc@{}}$\alpha$ & $1 - \beta$ & $F_{1} < F_{2}$ \\ $\alpha \exp(\alpha - 1)$ & $1 - \beta \exp(\beta - 1)$ & $F_{1} < F_{2}$ \\ $\sin\left(\frac{\pi \alpha}{2}\right)$ & $\cos\left(\frac{\pi \beta}{2}\right)$ & $F_{1} < F_{2}$\end{tabular} \\
+		\midrule
+		6 & \begin{tabular}{@{}c@{}}$F_{1} < F_{2}$ \\ $F_{1} > F_{2}$\end{tabular} & $F_{1} > F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & $F_{1} < F_{2}$ & \begin{tabular}{@{}ccc@{}}$\alpha$ & $1 - \beta$ & $F_{1} < F_{2}$ \\ $\alpha \exp(\alpha - 1)$ & $1 - \beta \exp(\beta - 1)$ & $F_{1} < F_{2}$ \\ $\sin\left(\frac{\pi \alpha}{2}\right)$ & $\cos\left(\frac{\pi \beta}{2}\right)$ & $F_{1} < F_{2}$\end{tabular} \\
+		\midrule
+		7 & \begin{tabular}{@{}c@{}}$F_{3} > F_{2} > F_{1}$ \\ $F_{3} > F_{1} > F_{2}$ \\ $F_{1} > F_{3} > F_{2}$\end{tabular} & $F_{1} > F_{3} > F_{2}$ & $F_{3} > F_{2} > F_{1}$ & $F_{3} > F_{2} > F_{1}$ & $F_{3} > F_{2} > F_{1}$ & $F_{3} > F_{1} > F_{2}$ & \begin{tabular}{@{}ccc@{}}$\alpha$ & $1 - \beta$ & $F_{3} > F_{2} > F_{1}$ \\ $\alpha \exp(\alpha - 1)$ & $1 - \beta \exp(\beta - 1)$ & $F_{3} > F_{2} > F_{1}$ \\ $\sin\left(\frac{\pi \alpha}{2}\right)$ & $\cos\left(\frac{\pi \beta}{2}\right)$ & $F_{3} > F_{2} > F_{1}$\end{tabular} \\
+		\bottomrule
 	\end{tabular}}
 \end{table}

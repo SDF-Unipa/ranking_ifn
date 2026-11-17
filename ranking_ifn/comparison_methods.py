@@ -24,7 +24,11 @@ LAMBDA_GRID: list[float] = [round(0.1 * k, 1) for k in range(11)]
 # Method metadata for `rankings.json` (name, DOI, optional URL)
 METHODS: dict[str, dict] = {
     "ye2011": {"name": "Ye's method", "doi": "10.1016/j.eswa.2011.03.059"},
-    "rezvani2013": {"name": "Rezvani's method", "doi": None},
+    "rezvani2013": {
+        "name": "Rezvani's method",
+        "doi": None,
+        "url": "http://www.afmi.or.kr/papers/2013/Vol-05_No-03/PDF-AFMI-5-3(451-619)/AFMI-5-3(515-523)-H-120725.pdf",
+    },
     "roseline2013": {
         "name": "Roseline et al.'s method",
         "doi": "10.15373/2249555X/JUNE2013/183",
@@ -193,7 +197,10 @@ def rank_example(ifns: list[IntuitionisticFuzzyNumber]) -> dict[str, list[str]]:
     return result
 
 
-def write_rankings(example: int, ranked: dict[str, list[str]]) -> None:
+def write_rankings(
+    example: int,
+    ranked: dict[str, list[str]],
+) -> None:
     """
     Update one example entry in rankings.json (created if missing).
 
@@ -206,9 +213,7 @@ def write_rankings(example: int, ranked: dict[str, list[str]]) -> None:
             rankings = json.load(f)
     else:
         rankings = {"examples": {}}
-    rankings["source"] = (
-        "Computed by ranking_ifn/comparison_methods.py"
-    )
+    rankings["source"] = "Computed by ranking_ifn/comparison_methods.py"
     rankings["methods"] = METHODS
     rankings["examples"][str(example)] = {
         **ranked,
@@ -217,7 +222,7 @@ def write_rankings(example: int, ranked: dict[str, list[str]]) -> None:
         sorted(rankings["examples"].items(), key=lambda kv: int(kv[0]))
     )
     with open(RANKINGS_PATH, "w", encoding="utf-8") as f:
-        json.dump(rankings, f, ensure_ascii=False, indent=4, sort_keys=True)
+        json.dump(rankings, f, ensure_ascii=False, indent=2, sort_keys=True)
 
 
 def print_comparison(ifns: list[IntuitionisticFuzzyNumber], example: int) -> None:
