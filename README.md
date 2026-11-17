@@ -87,11 +87,11 @@ steps.
 
 | File | Content |
 | --- | --- |
-| `ifn.py` | `IntuitionisticFuzzyNumber` (trapezoidal μ/ν params, α-, β-, α–β-cuts; validates $b_1 \le a_1 \le b_2 \le a_2 \le a_3 \le b_3 \le a_4 \le b_4$) and `IdealIntuitionisticFuzzyNumber` (constant-interval ideal point) |
-| `st_function.py` | `STFunction` — three predefined `s(α)`/`t(β)` weight pairs (linear, exponential, trigonometric) |
-| `ifn_distance.py` | `DistanceCalculator` — interval distance `d_I`, component distances `d_μ`/`d_ν`/`d_μν`, ideal/anti-ideal cut sets (`f_ast`), `Δ_μ`/`Δ_ν`, `σ`, `ranking_index`, `ranking`; `safe_ratio` (½ on vanishing denominators), `ranks_to_string` for LaTeX output; `DATA_DIR` |
-| `test.py` | Paper Examples 1–7, each run for every $(s, t)$ pair of `STFunction.all_functions()` (linear, exponential, trigonometric), `n = m = 100`; writes per-example JSON and the two LaTeX tables |
-| `rankings.json` | Literature rankings (Ye, Rezvani, Roseline–Amirtharaj, Bharati, Mohan, Popa) with DOIs, notation `F_1/F_2/F_3` |
+| `ifn.py` | `IntuitionisticFuzzyNumber` (trapezoidal $\mu$/$\nu$ params, $\alpha$-, $\beta$-, $(\alpha,\beta)$-cuts, `random_ifn()` random valid instance; validates $b_1 \le a_1 \le b_2 \le a_2 \le a_3 \le b_3 \le a_4 \le b_4$) and `IdealIntuitionisticFuzzyNumber` (constant-interval ideal point) |
+| `st_function.py` | `STFunction` — three predefined $s(\alpha)$/$t(\beta)$ weight pairs (linear, exponential, trigonometric) |
+| `ifn_distance.py` | `DistanceCalculator` — interval distance $d_I$, component distances $d_\mu$/$d_\nu$/$d_{\mu\nu}$, ideal/anti-ideal cut sets (`f_ast`), $\Delta_\mu$/$\Delta_\nu$, $\sigma$, `ranking_index`, `ranking`; `safe_ratio` ($\frac{1}{2}$ on vanishing denominators), `ranks_to_string` for LaTeX output; `DATA_DIR` |
+| `test.py` | Paper Examples 1–7, each run for every $(s, t)$ pair of `STFunction.all_functions()` (linear, exponential, trigonometric), `n = m = 100`; writes per-example JSON and the two LaTeX tables; `look_different_ranking` searches random TrIFN triples whose ranking changes with $(s, t)$ |
+| `rankings.json` | Literature rankings (Ye, Rezvani, Roseline–Amirtharaj, Bharati, Mohan, Popa) with DOIs, notation $F_1/F_2/F_3$ |
 | `data/` | Generated output (recreated from scratch at every run) |
 
 ## Usage
@@ -116,6 +116,12 @@ This **deletes and regenerates** `data/`, then writes:
   columns from `rankings.json` plus a final *Proposed method* column holding a
   nested table (s-function, t-function, ranking) with one line per $(s, t)$
   pair, derived from `data/example_N.json` (paper Table `tab:comparison`)
+- `data/different_ranking.json` — output of `look_different_ranking`: draws
+  random triples of TrIFNs (`IntuitionisticFuzzyNumber.random_ifn()`, seed
+  101) until the three $(s, t)$ pairs yield **different** rankings, then
+  stores the triple (`F1`, `F2`, `F3`) and the distinct ranking strings
+  (`ranks`); i.e. a counterexample showing the ranking can depend on the
+  choice of $(s, t)$
 - `intuitionistic.log` — debug log (written in the current working directory)
 
 Programmatic use:
