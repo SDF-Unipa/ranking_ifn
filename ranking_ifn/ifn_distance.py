@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 import math
+import typing
 from pathlib import Path
 
 import numpy as np
@@ -38,15 +39,19 @@ def safe_ratio(num: np.ndarray, other: np.ndarray) -> np.ndarray:
     return np.where(other == 0.0, 0.5, num / np.where(other == 0.0, 1.0, other))
 
 
-def update_data_file(file_path: Path, data: dict) -> None:
+def update_data_file(file_path: typing.Optional[Path], data: dict) -> None:
     """
     Update the JSON file with new data. If the file does not exist, it will be created.
 
     Args:
-    file_path (Path): The path to the JSON file.
+    file_path (Path | None): The path to the JSON file. If None, the file will not be updated.
     data (dict): The data to be added to the JSON file.
     """
     import json
+
+    if file_path is None:
+        # If no file path is provided, do not attempt to update the file.
+        return
 
     if not file_path.exists():
         existing_data: list = []

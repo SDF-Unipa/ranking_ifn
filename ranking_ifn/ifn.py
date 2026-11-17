@@ -22,6 +22,18 @@ class IntuitionisticFuzzyNumber:
                 b1 <= a1 and b2 <= a2 <= a3 <= b3 and a4 <= b4
             ), "Invalid trapezoidal parameters for IFN."
 
+    @staticmethod
+    def random_ifn() -> IntuitionisticFuzzyNumber:
+        import random
+
+        while True:
+            try:
+                mu = sorted([round(random.random(), 2) for _ in range(4)])
+                nu = sorted([round(random.random(), 2) for _ in range(4)])
+                return IntuitionisticFuzzyNumber(mu, nu)
+            except AssertionError:
+                continue
+
     def alpha_cut(self, alpha: float) -> tuple[float, float]:
         """
         Compute the alpha-cut of the intuitionistic fuzzy number.

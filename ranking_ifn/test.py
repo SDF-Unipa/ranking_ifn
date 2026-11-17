@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 import shutil
 import sys
+import typing
+from collections import defaultdict
 from pathlib import Path
 
 sys.path.append(Path(__file__).parent.parent.as_posix())
@@ -194,6 +196,71 @@ def example_7(n: int = 100, m: int = 100):
         print_comparison([A1, A2, A3], example=7)
 
 
+def look_different_ranking(data_dir: Path, n: int = 100, m: int = 100):
+    """
+    Look for different rankings of randomly generated intuitionistic fuzzy numbers.
+    The function generates random intuitionistic fuzzy numbers until it finds a set of numbers
+    that produce different rankings under the available S- and T-functions. The results are
+    stored in a JSON file within the specified data directory.
+
+    Args:
+    data_dir (Path): The directory to store the results.
+    n (int): The number of samples for the S-function.
+    m (int): The number of samples for the T-function.
+    """
+    import random
+
+    # Set the random seed for reproducibility
+    random.seed(101)
+
+    while True:
+        # Generate random intuitionistic fuzzy numbers for the current iteration
+        f1 = IntuitionisticFuzzyNumber.random_ifn()
+        f2 = IntuitionisticFuzzyNumber.random_ifn()
+        f3 = IntuitionisticFuzzyNumber.random_ifn()
+        print("\nLook Different Ranking")
+        ranks_set: set[str] = set()
+        ranks_map: dict[str, list[str]] = defaultdict(list)
+        for (s_function_name, s_function), (
+            t_function_name,
+            t_function,
+        ) in STFunction.all_functions():
+            # Compute the ranking for the current combination of S- and T-functions
+            ranks, ranks_str = DistanceCalculator.ranking(
+                s_function=s_function,
+                t_function=t_function,
+                fuzzy=[f1, f2, f3],
+                n=n,
+                m=m,
+                file_path=None,
+                s_function_name=s_function_name,
+                t_function_name=t_function_name,
+            )
+            print(
+                f"S-Function: {s_function_name}, T-Function: {t_function_name}, Ranks: {ranks}, Comparison: {ranks_str}"
+            )
+            # Add the current ranking to the set and map it to the corresponding S- and T-function names
+            ranks_set.add(ranks_str)
+            ranks_map[ranks_str].append((s_function_name, t_function_name))
+        if len(ranks_set) > 1:
+            break
+    # Save the different ranking results to a JSON file
+    data: dict[str, typing.Any] = {
+        "F1": str(f1),
+        "F2": str(f2),
+        "F3": str(f3),
+        "ranks_map": ranks_map,
+        "ranks": list(ranks_set),
+    }
+    with open(data_dir / "different_ranking.json", "a") as f:
+        json.dump(
+            data,
+            f,
+            indent=2,
+            sort_keys=True,
+        )
+
+
 def main() -> None:
     example_1()
     example_2()
@@ -333,3 +400,4 @@ if __name__ == "__main__":
     main()
     latex_table(DATA_DIR)
     comparison_table(DATA_DIR)
+    look_different_ranking(DATA_DIR)
