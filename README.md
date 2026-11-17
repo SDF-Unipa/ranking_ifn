@@ -1,7 +1,7 @@
 # ranking_ifn
 
-Companion repository for the paper *"An Interval-Based Distance for Ranking
-Intuitionistic Fuzzy Numbers"* (not yet published). It implements the proposed
+Companion repository for the paper **An Interval-Based Distance for Ranking
+Intuitionistic Fuzzy Numbers**. It implements the proposed
 distance-based ranking of trapezoidal intuitionistic fuzzy numbers (TrIFN) and
 reproduces the comparison against several ranking methods from the literature.
 A citation entry and DOI will be added upon publication.
