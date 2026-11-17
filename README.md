@@ -90,7 +90,7 @@ steps.
 | `ifn.py` | `IntuitionisticFuzzyNumber` (trapezoidal μ/ν params, α-, β-, α–β-cuts; validates $b_1 \le a_1 \le b_2 \le a_2 \le a_3 \le b_3 \le a_4 \le b_4$) and `IdealIntuitionisticFuzzyNumber` (constant-interval ideal point) |
 | `st_function.py` | `STFunction` — three predefined `s(α)`/`t(β)` weight pairs (linear, exponential, trigonometric) |
 | `ifn_distance.py` | `DistanceCalculator` — interval distance `d_I`, component distances `d_μ`/`d_ν`/`d_μν`, ideal/anti-ideal cut sets (`f_ast`), `Δ_μ`/`Δ_ν`, `σ`, `ranking_index`, `ranking`; `safe_ratio` (½ on vanishing denominators), `ranks_to_string` for LaTeX output; `DATA_DIR` |
-| `test.py` | Paper Examples 1–7, run with $s(\alpha) = \alpha$, $t(\beta) = 1-\beta$, `n = m = 100`; writes per-example JSON and the two LaTeX tables |
+| `test.py` | Paper Examples 1–7, each run for every $(s, t)$ pair of `STFunction.all_functions()` (linear, exponential, trigonometric), `n = m = 100`; writes per-example JSON and the two LaTeX tables |
 | `rankings.json` | Literature rankings (Ye, Rezvani, Roseline–Amirtharaj, Bharati, Mohan, Popa) with DOIs, notation `F_1/F_2/F_3` |
 | `data/` | Generated output (recreated from scratch at every run) |
 
@@ -104,16 +104,18 @@ python -m ranking_ifn.test
 
 This **deletes and regenerates** `data/`, then writes:
 
-- `data/example_N.json` — one entry per run with, for all the IFNs of the
-  example: the parameters $F_i$, the six distances to the ideals,
-  $\Delta_\mu$, $\Delta_\nu$, $\sigma$, the three index terms
-  $R_1$, $R_2$, $R_3$ and $\mathcal{R}$ (N = 1–7)
+- `data/example_N.json` — one entry per $(s, t)$ pair (3 per example) with,
+  for all the IFNs of the example: the parameters $F_i$, the six distances to
+  the ideals, $\Delta_\mu$, $\Delta_\nu$, $\sigma$, the three index terms
+  $R_1$, $R_2$, $R_3$, $\mathcal{R}$ and the names of the $s$/$t$ functions
+  (N = 1–7)
 - `data/table_examples.tex` — LaTeX table of $\sigma$, $R_1$, $R_2$, $R_3$,
-  $\mathcal{R}$ and the resulting comparison for all examples
-  (paper Table `tab:examples`)
+  $\mathcal{R}$ and the resulting comparison, one row per $(s, t)$ pair,
+  with a `\midrule` between examples (paper Table `tab:examples`)
 - `data/table_comparison.tex` — comparison with the literature methods:
-  columns from `rankings.json` plus the proposed method column derived from
-  `data/example_N.json` (paper Table `tab:comparison`)
+  columns from `rankings.json` plus a final *Proposed method* column holding a
+  nested table (s-function, t-function, ranking) with one line per $(s, t)$
+  pair, derived from `data/example_N.json` (paper Table `tab:comparison`)
 - `intuitionistic.log` — debug log (written in the current working directory)
 
 Programmatic use:
